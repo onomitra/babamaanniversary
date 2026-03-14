@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Jubilee – Swapan & Rita</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: letter portrait; margin: 0; }
+
+  @media print {
+    body { padding: 0; background: #2a0008; }
+    .poster { box-shadow: none; }
+  }
+
+  body {
+    background: #0e0003;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px 20px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .poster {
+    /* Letter: 8.5 × 11 in = 816 × 1056 px at 96dpi */
+    width: 816px;
+    height: 1056px;
+    flex-shrink: 0;
+    background: #2a0008;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Background gradients */
+  .poster::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 50% at 50% 0%, rgba(120,10,28,0.9) 0%, transparent 65%),
+      radial-gradient(ellipse 70% 40% at 50% 100%, rgba(100,8,22,0.7) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 50% at 50% 50%, rgba(40,0,8,0.5) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle noise texture */
+  .poster::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Ornamental border system */
+  .border-outer {
+    position: absolute;
+    inset: 16px;
+    border: 1px solid rgba(201,147,58,0.6);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .border-inner {
+    position: absolute;
+    inset: 22px;
+    border: 0.5px solid rgba(232,196,106,0.2);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Corner ornaments */
+  .corner {
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    z-index: 2;
+  }
+  .corner.tl { top: 10px; left: 10px; }
+  .corner.tr { top: 10px; right: 10px; transform: scaleX(-1); }
+  .corner.bl { bottom: 10px; left: 10px; transform: scaleY(-1); }
+  .corner.br { bottom: 10px; right: 10px; transform: scale(-1); }
+
+  /* All content sits above background */
+  .content { position: relative; z-index: 3; width: 100%; display: flex; flex-direction: column; align-items: center; }
+
+  /* ── TOP PAISLEY / ARCH ── */
+  .top-arch {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 44px;
+  }
+
+  /* ── FROM label ── */
+  .from-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 22px;
+    gap: 4px;
+  }
+  .from-tag {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 8px;
+    letter-spacing: 5px;
+    color: rgba(201,147,58,0.7);
+    text-transform: uppercase;
+  }
+  .from-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 300;
+    color: #f0d898;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .from-names span {
+    color: #e8c46a;
+    font-weight: 400;
+  }
+  .from-grandkids {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(240,216,152,0.65);
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  /* ── Small divider ── */
+  .divider-sm {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .div-line {
+    height: 0.5px;
+    background: linear-gradient(to right, transparent, rgba(201,147,58,0.7), transparent);
+  }
+  .div-line.w80 { width: 80px; }
+  .div-line.w140 { width: 140px; }
+  .div-diamond {
+    width: 5px; height: 5px;
+    background: #c9933a;
+    transform: rotate(45deg);
+    box-shadow: 0 0 5px rgba(201,147,58,0.8);
+    flex-shrink: 0;
+  }
+
+  /* ── REQUEST TEXT ── */
+  .request-text {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(240,216,152,0.75);
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+
+  /* ── HONOR TEXT ── */
+  .honor-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(240,216,152,0.75);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.7;
+    padding: 0 60px;
+  }
+
+  /* ── 50 medallion ── */
+  .medallion-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px 0 0;
+    gap: 0;
+  }
+  .medallion {
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 40% 35%, #8b1a2a, #3d0008 80%);
+    box-shadow: 0 0 0 1.5px #c9933a, 0 0 0 5px rgba(201,147,58,0.1), 0 0 30px rgba(201,147,58,0.35);
+  }
+  .medallion::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(232,196,106,0.35);
+  }
+  .medallion-50 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 46px;
+    font-weight: 700;
+    color: #e8c46a;
+    line-height: 1;
+    text-shadow: 0 0 16px rgba(232,196,106,0.7);
+    letter-spacing: -2px;
+  }
+  .medallion-years {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 8.5px;
+    letter-spacing: 3.5px;
+    color: #c9933a;
+    margin-top: 3px;
+  }
+
+  /* ── GOLDEN JUBILEE ── */
+  .jubilee-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 4px;
+  }
+  .jubilee-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #e8c46a;
+    letter-spacing: 3px;
+    text-shadow: 0 0 18px rgba(232,196,106,0.5);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .jubilee-sub {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 9px;
+    letter-spacing: 6px;
+    color: rgba(201,147,58,0.7);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* ── NAMES ── */
+  .names-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 14px 0 0;
+    gap: 2px;
+  }
+  .name-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 300;
+    font-style: italic;
+    color: #f5e4b0;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-shadow: 0 0 30px rgba(245,228,176,0.25);
+  }
+  .name-amp {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-style: italic;
+    font-weight: 300;
+    color: #c9933a;
+    line-height: 1;
+    margin: 2px 0;
+  }
+
+  /* ── BABA MA label ── */
+  .baba-ma {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 14.5px;
+    color: rgba(201,147,58,0.65);
+    letter-spacing: 4px;
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  /* ── FLORAL divider SVG ── */
+  .floral-divider {
+    width: 480px;
+    margin: 16px 0 14px;
+  }
+
+  /* ── DETAILS BLOCK ── */
+  .details-outer {
+    width: 580px;
+    border: 0.5px solid rgba(201,147,58,0.35);
+    padding: 22px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    background: rgba(0,0,0,0.15);
+    position: relative;
+  }
+  .details-outer::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 0.5px solid rgba(201,147,58,0.15);
+    pointer-events: none;
+  }
+
+  .detail-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .detail-label {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 7.5px;
+    letter-spacing: 5px;
+    color: rgba(201,147,58,0.6);
+    text-transform: uppercase;
+  }
+  .detail-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #f0d898;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .detail-value.large {
+    font-size: 26px;
+    font-style: italic;
+  }
+  .detail-sub {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(240,216,152,0.55);
+    text-align: center;
+  }
+
+  .dot-sep {
+    width: 4px; height: 4px;
+    background: rgba(201,147,58,0.5);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── RSVP note ── */
+  .rsvp-note {
+    margin-top: 20px;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(201,147,58,0.55);
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  /* ── Bottom arch ── */
+  .bottom-arch {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .content > * {
+    animation: fadeUp 0.9s ease both;
+  }
+  .content > *:nth-child(1) { animation-delay: 0.05s; }
+  .content > *:nth-child(2) { animation-delay: 0.15s; }
+  .content > *:nth-child(3) { animation-delay: 0.25s; }
+  .content > *:nth-child(4) { animation-delay: 0.35s; }
+  .content > *:nth-child(5) { animation-delay: 0.45s; }
+  .content > *:nth-child(6) { animation-delay: 0.55s; }
+  .content > *:nth-child(7) { animation-delay: 0.65s; }
+  .content > *:nth-child(8) { animation-delay: 0.70s; }
+  .content > *:nth-child(9) { animation-delay: 0.75s; }
+  .content > *:nth-child(10){ animation-delay: 0.80s; }
+  .content > *:nth-child(11){ animation-delay: 0.85s; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- Borders -->
+  <div class="border-outer"></div>
+  <div class="border-inner"></div>
+
+  <!-- Corner SVG ornaments -->
+  <svg class="corner tl" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4 L4 22 M4 4 L22 4" stroke="#c9933a" stroke-width="1.2" opacity="0.8"/>
+    <path d="M4 4 Q28 4 28 28" stroke="#c9933a" stroke-width="0.5" opacity="0.4" fill="none"/>
+    <circle cx="4" cy="4" r="2" fill="#c9933a" opacity="0.9"/>
+    <circle cx="22" cy="4" r="1.2" fill="#c9933a" opacity="0.5"/>
+    <circle cx="4" cy="22" r="1.2" fill="#c9933a" opacity="0.5"/>
+    <path d="M10 10 L14 10 L10 14 Z" fill="#c9933a" opacity="0.35"/>
+  </svg>
+  <svg class="corner tr" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4 L4 22 M4 4 L22 4" stroke="#c9933a" stroke-width="1.2" opacity="0.8"/>
+    <path d="M4 4 Q28 4 28 28" stroke="#c9933a" stroke-width="0.5" opacity="0.4" fill="none"/>
+    <circle cx="4" cy="4" r="2" fill="#c9933a" opacity="0.9"/>
+    <circle cx="22" cy="4" r="1.2" fill="#c9933a" opacity="0.5"/>
+    <circle cx="4" cy="22" r="1.2" fill="#c9933a" opacity="0.5"/>
+    <path d="M10 10 L14 10 L10 14 Z" fill="#c9933a" opacity="0.35"/>
+  </svg>
+  <svg class="corner bl" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4 L4 22 M4 4 L22 4" stroke="#c9933a" stroke-width="1.2" opacity="0.8"/>
+    <path d="M4 4 Q28 4 28 28" stroke="#c9933a" stroke-width="0.5" opacity="0.4" fill="none"/>
+    <circle cx="4" cy="4" r="2" fill="#c9933a" opacity="0.9"/>
+    <circle cx="22" cy="4" r="1.2" fill="#c9933a" opacity="0.5"/>
+    <circle cx="4" cy="22" r="1.2" fill="#c9933a" opacity="0.5"/>
+    <path d="M10 10 L14 10 L10 14 Z" fill="#c9933a" opacity="0.35"/>
+  </svg>
+  <svg class="corner br" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4 L4 22 M4 4 L22 4" stroke="#c9933a" stroke-width="1.2" opacity="0.8"/>
+    <path d="M4 4 Q28 4 28 28" stroke="#c9933a" stroke-width="0.5" opacity="0.4" fill="none"/>
+    <circle cx="4" cy="4" r="2" fill="#c9933a" opacity="0.9"/>
+    <circle cx="22" cy="4" r="1.2" fill="#c9933a" opacity="0.5"/>
+    <circle cx="4" cy="22" r="1.2" fill="#c9933a" opacity="0.5"/>
+    <path d="M10 10 L14 10 L10 14 Z" fill="#c9933a" opacity="0.35"/>
+  </svg>
+
+  <div class="content">
+
+    <!-- Top decorative arch / lotus -->
+    <div class="top-arch">
+      <svg width="400" height="90" viewBox="0 0 400 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Central lotus petals -->
+        <ellipse cx="200" cy="62" rx="14" ry="26" fill="rgba(201,147,58,0.18)" stroke="#c9933a" stroke-width="0.7"/>
+        <ellipse cx="200" cy="62" rx="14" ry="26" fill="none" transform="rotate(25 200 62)" stroke="#c9933a" stroke-width="0.5" opacity="0.5"/>
+        <ellipse cx="200" cy="62" rx="14" ry="26" fill="none" transform="rotate(-25 200 62)" stroke="#c9933a" stroke-width="0.5" opacity="0.5"/>
+        <ellipse cx="200" cy="62" rx="14" ry="26" fill="none" transform="rotate(50 200 62)" stroke="#c9933a" stroke-width="0.4" opacity="0.35"/>
+        <ellipse cx="200" cy="62" rx="14" ry="26" fill="none" transform="rotate(-50 200 62)" stroke="#c9933a" stroke-width="0.4" opacity="0.35"/>
+        <circle cx="200" cy="58" r="5" fill="#c9933a" opacity="0.7"/>
+        <circle cx="200" cy="58" r="2.5" fill="#e8c46a" opacity="0.9"/>
+
+        <!-- Left vine -->
+        <path d="M186 62 Q160 50 130 58 Q100 65 76 52 Q52 40 40 20" stroke="#c9933a" stroke-width="0.7" fill="none" opacity="0.55"/>
+        <path d="M175 58 Q155 42 135 48" stroke="#c9933a" stroke-width="0.4" fill="none" opacity="0.35"/>
+        <circle cx="130" cy="58" r="2.5" fill="none" stroke="#c9933a" stroke-width="0.6" opacity="0.5"/>
+        <circle cx="76" cy="52" r="2" fill="none" stroke="#c9933a" stroke-width="0.6" opacity="0.5"/>
+        <!-- Left small flowers -->
+        <circle cx="130" cy="58" r="4" fill="rgba(201,147,58,0.12)" stroke="#c9933a" stroke-width="0.5" opacity="0.6"/>
+        <circle cx="76" cy="52" r="3.5" fill="rgba(201,147,58,0.12)" stroke="#c9933a" stroke-width="0.5" opacity="0.6"/>
+        <circle cx="40" cy="20" r="4" fill="rgba(201,147,58,0.12)" stroke="#c9933a" stroke-width="0.5" opacity="0.6"/>
+        <!-- Small leaves left -->
+        <path d="M155 52 Q148 44 156 40 Q158 48 155 52Z" fill="rgba(201,147,58,0.2)" opacity="0.7"/>
+        <path d="M100 58 Q93 50 101 46 Q103 54 100 58Z" fill="rgba(201,147,58,0.2)" opacity="0.7"/>
+
+        <!-- Right vine (mirror) -->
+        <path d="M214 62 Q240 50 270 58 Q300 65 324 52 Q348 40 360 20" stroke="#c9933a" stroke-width="0.7" fill="none" opacity="0.55"/>
+        <path d="M225 58 Q245 42 265 48" stroke="#c9933a" stroke-width="0.4" fill="none" opacity="0.35"/>
+        <circle cx="270" cy="58" r="2.5" fill="none" stroke="#c9933a" stroke-width="0.6" opacity="0.5"/>
+        <circle cx="324" cy="52" r="2" fill="none" stroke="#c9933a" stroke-width="0.6" opacity="0.5"/>
+        <circle cx="270" cy="58" r="4" fill="rgba(201,147,58,0.12)" stroke="#c9933a" stroke-width="0.5" opacity="0.6"/>
+        <circle cx="324" cy="52" r="3.5" fill="rgba(201,147,58,0.12)" stroke="#c9933a" stroke-width="0.5" opacity="0.6"/>
+        <circle cx="360" cy="20" r="4" fill="rgba(201,147,58,0.12)" stroke="#c9933a" stroke-width="0.5" opacity="0.6"/>
+        <path d="M245 52 Q252 44 244 40 Q242 48 245 52Z" fill="rgba(201,147,58,0.2)" opacity="0.7"/>
+        <path d="M300 58 Q307 50 299 46 Q297 54 300 58Z" fill="rgba(201,147,58,0.2)" opacity="0.7"/>
+
+        <!-- Horizontal base line -->
+        <line x1="36" y1="68" x2="364" y2="68" stroke="#c9933a" stroke-width="0.5" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <!-- From section -->
+    <div class="from-section">
+      <div class="from-tag">— together with joy —</div>
+      <div class="from-names">
+        <span>Onomitra</span> &nbsp;·&nbsp; <span>Ranjana</span> &nbsp;·&nbsp; <span>Romit</span> &nbsp;&amp;&nbsp; <span>Riona</span>
+      </div>
+    </div>
+
+    <!-- Divider sm -->
+    <div class="divider-sm">
+      <div class="div-line w80"></div>
+      <div class="div-diamond"></div>
+      <div class="div-line w80"></div>
+    </div>
+
+    <!-- Request text -->
+    <div class="request-text">joyfully invite you to celebrate</div>
+
+    <!-- Medallion -->
+    <div class="medallion-wrap">
+      <div class="medallion">
+        <div class="medallion-50">50</div>
+        <div class="medallion-years">years</div>
+      </div>
+    </div>
+
+    <!-- Golden Jubilee -->
+    <div class="jubilee-block">
+      <div class="jubilee-title">Golden Jubilee</div>
+      <div class="jubilee-sub">of love &nbsp;·&nbsp; togetherness &nbsp;·&nbsp; grace</div>
+    </div>
+
+    <!-- Names -->
+    <div class="names-block">
+      <div class="name-main">Baba</div>
+      <div class="name-amp">&amp;</div>
+      <div class="name-main">Ma</div>
+      <div class="baba-ma">— Swapan &nbsp;&amp;&nbsp; Rita —</div>
+    </div>
+
+    <!-- Floral divider -->
+    <svg class="floral-divider" viewBox="0 0 480 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="14" x2="190" y2="14" stroke="url(#lgrad)" stroke-width="0.6"/>
+      <line x1="290" y1="14" x2="480" y2="14" stroke="url(#rgrad)" stroke-width="0.6"/>
+      <!-- centre motif -->
+      <circle cx="240" cy="14" r="5.5" fill="rgba(201,147,58,0.15)" stroke="#c9933a" stroke-width="0.8"/>
+      <circle cx="240" cy="14" r="2" fill="#c9933a" opacity="0.8"/>
+      <circle cx="222" cy="14" r="3" fill="rgba(201,147,58,0.15)" stroke="#c9933a" stroke-width="0.6"/>
+      <circle cx="258" cy="14" r="3" fill="rgba(201,147,58,0.15)" stroke="#c9933a" stroke-width="0.6"/>
+      <rect x="207" y="12.5" width="8" height="3" rx="1.5" fill="rgba(201,147,58,0.4)" transform="rotate(0 211 14)"/>
+      <rect x="265" y="12.5" width="8" height="3" rx="1.5" fill="rgba(201,147,58,0.4)"/>
+      <defs>
+        <linearGradient id="lgrad" x1="0" y1="0" x2="190" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#c9933a" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#c9933a" stop-opacity="0.7"/>
+        </linearGradient>
+        <linearGradient id="rgrad" x1="290" y1="0" x2="480" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#c9933a" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#c9933a" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <!-- Details block -->
+    <div class="details-outer">
+
+      <div class="detail-row">
+        <div class="detail-label">Date</div>
+        <div class="detail-value large">Sunday, 26th April 2026</div>
+      </div>
+
+      <div class="divider-sm">
+        <div class="div-line w140"></div>
+        <div class="div-diamond"></div>
+        <div class="div-line w140"></div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Time</div>
+        <div class="detail-value">6:00 PM – 9:30 PM</div>
+      </div>
+
+      <div class="divider-sm">
+        <div class="div-line w140"></div>
+        <div class="div-diamond"></div>
+        <div class="div-line w140"></div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Venue</div>
+        <div class="detail-value">Kheya Hall</div>
+        <div class="detail-sub">Anderson Club (ILSS)</div>
+        <div class="detail-sub">Rabindra Sarobor, Kolkata 700029</div>
+      </div>
+
+    </div>
+
+    <!-- RSVP -->
+    <div class="rsvp-note">Your presence is the finest gift of all</div>
+
+    <!-- Bottom arch -->
+    <div class="bottom-arch">
+      <svg width="360" height="60" viewBox="0 0 360 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="360" y2="8" stroke="#c9933a" stroke-width="0.4" opacity="0.25"/>
+        <!-- Bottom lotus -->
+        <ellipse cx="180" cy="8" rx="10" ry="18" fill="rgba(201,147,58,0.1)" stroke="#c9933a" stroke-width="0.6" opacity="0.6"/>
+        <ellipse cx="180" cy="8" rx="10" ry="18" fill="none" transform="rotate(30 180 8)" stroke="#c9933a" stroke-width="0.4" opacity="0.4"/>
+        <ellipse cx="180" cy="8" rx="10" ry="18" fill="none" transform="rotate(-30 180 8)" stroke="#c9933a" stroke-width="0.4" opacity="0.4"/>
+        <circle cx="180" cy="6" r="3.5" fill="#c9933a" opacity="0.5"/>
+        <circle cx="180" cy="6" r="1.8" fill="#e8c46a" opacity="0.7"/>
+        <!-- Side vines -->
+        <path d="M170 8 Q145 12 120 6 Q95 0 70 10" stroke="#c9933a" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <path d="M190 8 Q215 12 240 6 Q265 0 290 10" stroke="#c9933a" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <circle cx="120" cy="6" r="3" fill="rgba(201,147,58,0.12)" stroke="#c9933a" stroke-width="0.5" opacity="0.5"/>
+        <circle cx="240" cy="6" r="3" fill="rgba(201,147,58,0.12)" stroke="#c9933a" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+    </div>
+
+  </div><!-- /content -->
+</div>
+</body>
+</html>
