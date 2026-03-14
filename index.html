@@ -5,12 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Golden Jubilee – Swapan & Rita</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  // Replace with your EmailJS public key after setup (see README below)
-  emailjs.init({ publicKey: "l1sMr-ydUHm86aJHh" });
-</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -860,17 +854,15 @@
 
     const attending = response === 'yes';
 
-    // Send email via EmailJS
-    emailjs.send(
-      "service_7j6mzkh",      // ← replace after setup
-      "template_j5e4a6l",     // ← replace after setup
-      {
-        guest_name: name,
-        attendance: attending ? "Yes, will attend" : "No, cannot attend",
-        event: "Swapan & Rita's Golden Jubilee — 26th April 2026",
-        to_email: "onomitraghosh@gmail.com"
-      }
-    ).catch(() => {
+    // Send via Formspree — replace with your endpoint after signup at formspree.io
+    fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        attendance: attending ? "Yes, will attend" : "No, cannot attend"
+      })
+    }).catch(() => {
       // Silent fail — confirmation still shown to user
     });
 
